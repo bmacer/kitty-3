@@ -115,7 +115,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 /// up by `pallet_aura` to implement `fn slot_duration()`.
 ///
 /// Change this to adjust the block time.
-pub const MILLISECS_PER_BLOCK: u64 = 2000;
+pub const MILLISECS_PER_BLOCK: u64 = 15000;
 
 pub const SLOT_DURATION: u64 = MILLISECS_PER_BLOCK;
 
@@ -270,7 +270,7 @@ impl pallet_template::Config for Runtime {
 	type Event = Event;
 }
 
-impl pallet_kitties::Config for Runtime {
+impl kitties::Config for Runtime {
 	type Event = Event;
 }
 
@@ -292,7 +292,8 @@ construct_runtime!(
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template::{Module, Call, Storage, Event<T>},
 		// Substrate Kitties module
-		Kitties: pallet_kitties::{Module, Storage, Call, Event<T>},
+		// Kitties: pallet_kitties::{Module, Storage, Call, Config, Event<T>},
+		Kitties: kitties::{Module, Storage, Event<T>, Call},
 	}
 );
 
